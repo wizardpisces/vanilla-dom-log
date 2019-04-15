@@ -1,0 +1,19 @@
+{
+  "name": "dom-log",
+  "version": "1.0.0",
+  "description": "simple  dom log for development debug, especially mobile device",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dom",
+    "log",
+    "console",
+    "development",
+    "debug",
+    "browser"
+  ],
+  "author": "wizardpisces",
+  "license": "ISC"
+}
