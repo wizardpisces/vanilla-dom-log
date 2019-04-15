@@ -14,11 +14,11 @@
     "debug",
     "browser"
   ],
-  "homepage": "https://github.com/wizardpisces/vue-cli-plugin-klkspa.git",
+  "homepage": "https://https://github.com/wizardpisces/vanilla-dom-log.git",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wizardpisces/vue-cli-plugin-klkspa.git"
+    "url": "git+https://github.com/wizardpisces/vanilla-dom-log.git"
   },
-  "author": "caprice@klook.com",
+  "author": "1275839779@qq.com",
   "license": "ISC"
 }
