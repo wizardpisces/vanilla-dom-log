@@ -1,4 +1,4 @@
-# dom-log
+# vanilla-dom-log
 simple  dom log for development debug, especially mobile device
 support console.log and console.error proxy
 
