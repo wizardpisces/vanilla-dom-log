@@ -5,11 +5,11 @@ support console.log and console.error proxy
 ## How to Use
 
 ```
-npm install --save-dev dom-log
+npm install --save-dev vanilla-dom-log
 ```
 
 ```js
-import domLog from 'dom-log'
+import domLog from 'vanilla-dom-log'
 
 let domLog = domLog();
 
