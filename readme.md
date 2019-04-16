@@ -22,9 +22,12 @@ domLog.undelegate();
 console.log(2) // 2 would only print in chrome console
 ```
 
-## todos
+## Extra
 
-* mainly js object json tree view
+default: cache recent 10 log in localStorage
+
+## Todos
+
+* optimize object json tree view (especially for date and regex)
 * ts support
-* optimize dom + css connection ( prepare to use third party [csjs](https://github.com/rtsao/csjs) )
-
+* optimize UI

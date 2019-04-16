@@ -1,11 +1,11 @@
-import DomLog from './DomLog'
+import VanillaDomLog from './VanillaDomLog'
 
 function getInstance() {
     let instance = null
     return (options) => {
 
         if (!instance) {
-            instance = new DomLog(options);
+            instance = new VanillaDomLog(options);
         }
         return instance;
     }

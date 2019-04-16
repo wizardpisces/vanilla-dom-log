@@ -20,5 +20,9 @@
     "url": "git+https://github.com/wizardpisces/vanilla-dom-log.git"
   },
   "author": "1275839779@qq.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dom-json-tree": "^1.0.3",
+    "serialize-javascript": "^1.6.1"
+  }
 }
