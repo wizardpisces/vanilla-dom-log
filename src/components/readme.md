@@ -1,0 +1,1 @@
+simple version of [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) in web component

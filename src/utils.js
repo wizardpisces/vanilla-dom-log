@@ -1,5 +1,13 @@
-export function deserialize(serializedJavascript) {
+import serialize from 'serialize-javascript'
+
+function deserialize(serializedJavascript) {
     return eval('(' + serializedJavascript + ')');
 }
 
-export const _VallinaDomLogKey = '_vanilla-dom-log-key'
+const _VallinaDomLogKey = '_vanilla-dom-log-key'
+
+export {
+    serialize,
+    deserialize,
+    _VallinaDomLogKey
+}

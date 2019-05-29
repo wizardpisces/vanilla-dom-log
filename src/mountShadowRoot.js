@@ -1,26 +1,38 @@
 import {h} from './createNode';
 import cssText from './style.css.js'
+import './components'
 import {
+    serialize,
     _VallinaDomLogKey
 } from './utils.js'
 
 export let logRootWrapper = h('ul',{
     class:_VallinaDomLogKey
-})
+}, [h('tree-view', {
+    data: serialize({
+        test: 'test from mount shadow root!',
+        fn: function(){return 0},
+        info:{
+            name : 'lz',
+            list :[ 1,2,3]
+        }
+    })
+})]);
 
 export class DomShadowRoot extends HTMLElement {
     constructor() {
         super();
         // Create a shadow root
-        var shadow = this.attachShadow({
+        let shadowRoot = this.attachShadow({
             mode: 'open'
         });
 
-        shadow.append(h('style', {
+        shadowRoot.append(h('style', {
             type: 'text/css'
         }, [cssText]))
 
-        shadow.append(logRootWrapper)
+
+        shadowRoot.append(logRootWrapper)
     }
 }
 

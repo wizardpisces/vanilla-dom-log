@@ -16,8 +16,27 @@ import { isArray } from "util";
 todos : change to Vnode
 */
 
-function isDom(ele){
-    return ele instanceof HTMLElement
+/* 
+* https: //stackoverflow.com/questions/384286/javascript-isdom-how-do-you-check-if-a-javascript-object-is-a-dom-object
+ */
+function isElement(obj) {
+    try {
+        //Using W3 DOM2 (works for FF, Opera and Chrome)
+        return obj instanceof HTMLElement;
+    } catch (e) {
+        //Browsers not supporting W3 DOM2 don't have HTMLElement and
+        //an exception is thrown and we end up here. Testing some
+        //properties that all elements have (works on IE7)
+        return (typeof obj === "object") &&
+            (obj.nodeType === 1) && (typeof obj.style === "object") &&
+            (typeof obj.ownerDocument === "object");
+    }
+}
+
+let eventNameRegx = /^(\:)(\w+)/
+
+function isEvent(name,value){
+    return eventNameRegx.test(name)
 }
 
 export const dom = new Proxy({}, {
@@ -32,13 +51,15 @@ export const dom = new Proxy({}, {
                     Object.keys(attrs.style).map(attribute=>{
                         el.style[attribute] = attrs.style[attribute];
                     })
+                }else if(isEvent(prop,attrs[prop])){
+                    el[prop.replace(eventNameRegx ,'on$2')] = attrs[prop]
                 }else{
                     el.setAttribute(prop, attrs[prop]);
                 }
             }
             for (let child of children) {
 
-                if (typeof child === 'string') {
+                if ( !isElement(child) ) {
                     child = document.createTextNode(child);
                 }
                 

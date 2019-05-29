@@ -2,10 +2,10 @@
  *  dom console mainly for development mobile and PC debug
  */
 
-import serialize from 'serialize-javascript'
 import DomJsonTree from 'dom-json-tree';
 
 import {
+    serialize,
     deserialize,
     _VallinaDomLogKey
 } from './utils';
@@ -44,8 +44,6 @@ export default class VanillaDomConsole {
             },
             set(target, key, val) {
                 target[key] = val;
-                // ORIGINAL_CONSOLE_METHOD_MAP.log('proxy:',key,val)
-                
                 //replace JSON.stringify to serialize to prevent type function regex ... not correctly stored
                 localStorage.setItem(_VallinaDomLogKey, serialize(target.slice(-options.max_history_length)))
                 return true;
@@ -62,7 +60,6 @@ export default class VanillaDomConsole {
 
     _getHistoryLogs() {
         let cache = deserialize(localStorage.getItem(_VallinaDomLogKey))
-        ORIGINAL_CONSOLE_METHOD_MAP.log(cache)
         return cache || [];
     }
 
@@ -118,7 +115,8 @@ export function formatLog(...logs) {
         if (typeof log === 'object') {
 
             let el = h('span', {})
-            new DomJsonTree(log, el).render()
+
+            // new DomJsonTree(log, el).render()
 
             return el;
         }
