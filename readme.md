@@ -17,6 +17,17 @@ domLog.delegate();
 
 console.log(1); // 1 would print in both chrome console and dom view console
 
+console.log({
+    string:'lz',
+    list:[1, 2, [2, 3]],
+    number: Math.random(),
+    fn :function () {
+        var a = 1
+    },
+    regx : /^\s/g,
+    date : new Date()
+})
+
 domLog.undelegate();
 
 console.log(2) // 2 would only print in chrome console
@@ -28,6 +39,6 @@ default: cache recent 10 log in localStorage
 
 ## Todos
 
-* optimize object json tree view (especially for date and regex)
+* Optimize web component json tree view ( optimize UI and extract web component json tree view as separate package )
+* Support recursive object log 
 * ts support
-* optimize UI
