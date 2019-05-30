@@ -22,7 +22,6 @@
   "author": "1275839779@qq.com",
   "license": "ISC",
   "dependencies": {
-    "dom-json-tree": "^1.0.3",
     "serialize-javascript": "^1.6.1"
   }
 }

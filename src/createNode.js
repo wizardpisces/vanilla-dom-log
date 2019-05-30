@@ -33,11 +33,11 @@ function isElement(obj) {
     }
 }
 
-let eventNameRegx = /^(\:)(\w+)/
+// let eventNameRegx = /^(\:)(\w+)/
 
-function isEvent(name,value){
-    return eventNameRegx.test(name)
-}
+// function isEvent(name,value){
+//     return eventNameRegx.test(name)
+// }
 
 export const dom = new Proxy({}, {
     get(target, property) {
@@ -48,13 +48,21 @@ export const dom = new Proxy({}, {
             for (let prop of Object.keys(attrs)) {
 
                 if(prop === 'style'){
+
                     Object.keys(attrs.style).map(attribute=>{
                         el.style[attribute] = attrs.style[attribute];
                     })
-                }else if(isEvent(prop,attrs[prop])){
-                    el[prop.replace(eventNameRegx ,'on$2')] = attrs[prop]
+
+                } else if (prop === 'on' && typeof attrs[prop] === 'object') { //follow vue render function parse event
+                    // el[prop.replace(eventNameRegx ,'on$2')] = attrs[prop]
+                    Object.keys(attrs[prop]).map(event=>{
+                        el['on' + event] = attrs[prop][event]
+                    })
+
                 }else{
+
                     el.setAttribute(prop, attrs[prop]);
+                    
                 }
             }
             for (let child of children) {

@@ -7,7 +7,9 @@ import {
 
 import _ from '../_'
 
-import {getKey} from './TreeViewItem'
+import {
+    getKey
+} from './TreeViewItem'
 
 export default class TreeViewItem extends HTMLElement {
     constructor() {
@@ -32,7 +34,10 @@ export default class TreeViewItem extends HTMLElement {
     }
 
     get data() {
-        return this.getAttribute('data')
+        if (!this.cached) {
+            this.cached = deserialize(this.getAttribute('data'))
+        }
+        return this.cached;
     }
 
     getValue(value) {
@@ -51,7 +56,6 @@ export default class TreeViewItem extends HTMLElement {
 
 
     render(data) {
-        data = deserialize(data);
         this.template.replaceWith(h('div', {
             class: 'tree-view-item-value'
         }, [

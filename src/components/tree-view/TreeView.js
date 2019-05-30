@@ -40,7 +40,10 @@ export default class TreeView extends HTMLElement {
     }
 
     get data(){
-        return this.getAttribute('data')
+        if (!this.cached) {
+            this.cached = deserialize(this.getAttribute('data'))
+        }
+        return this.cached;
     }
 
     // attributeChangedCallback(name, oldVal, newVal) {
@@ -57,9 +60,7 @@ export default class TreeView extends HTMLElement {
     }
 
     render(data) {
-        console.log('this.data before parse', data)
-        data = parseData( deserialize(data) );
-        console.log('this.data',data)
+        data = parseData(data);
         this.treeViewDom.replaceWith(
             h('div', {
                 class: 'tree-view-wrapper'

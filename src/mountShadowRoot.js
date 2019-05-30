@@ -8,16 +8,7 @@ import {
 
 export let logRootWrapper = h('ul',{
     class:_VallinaDomLogKey
-}, [h('tree-view', {
-    data: serialize({
-        test: 'test from mount shadow root!',
-        fn: function(){return 0},
-        info:{
-            name : 'lz',
-            list :[ 1,2,3]
-        }
-    })
-})]);
+});
 
 export class DomShadowRoot extends HTMLElement {
     constructor() {
@@ -38,6 +29,6 @@ export class DomShadowRoot extends HTMLElement {
 
 customElements.define('dom-shadow-root', DomShadowRoot);
 
-export const shadowRootDom = h('dom-shadow-root')
+document.getElementsByTagName('body')[0].appendChild(h('dom-shadow-root'))
 
-document.getElementsByTagName('body')[0].appendChild(shadowRootDom)
+export default logRootWrapper

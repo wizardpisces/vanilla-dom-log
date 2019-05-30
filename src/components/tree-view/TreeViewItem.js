@@ -11,9 +11,11 @@ import _ from '../_'
 function isObject(value) {
     return value.type === 'object';
 }
+
 function isArray(value) {
     return value.type === 'array';
 }
+
 function isValue(value) {
     return value.type === 'value';
 }
@@ -86,7 +88,7 @@ export default class TreeViewItem extends HTMLElement {
             mode: 'open'
         });
 
-         shadowRoot.append(h('style', {
+        shadowRoot.append(h('style', {
             type: 'text/css'
         }, [cssText]))
 
@@ -115,57 +117,66 @@ export default class TreeViewItem extends HTMLElement {
     }
 
     get data() {
-        return this.getAttribute('data')
+        if (!this.cached) {
+            this.cached = deserialize(this.getAttribute('data'))
+        }
+        return this.cached;
     }
 
     render(data) {
-        data = deserialize(data);
-        this.template.replaceWith(h('div', {
+        this.template.replaceWith(this.template = h('div', { // change template for rerender
             class: 'tree-view-item'
         }, [
             this.getProperTreeViewItem(data)
         ]))
     }
 
-    toggleOpen () {
+    toggleOpen() {
         this.open = !this.open;
-        console.log(this.open)
+        this.render(this.data);
     }
 
-    getProperTreeViewItem(data){
+    getProperTreeViewItem(data) {
 
-        function getObjectTemplate(data){
-            let label = isObject(data) ? (data.children.length > 1 ? 'properties' : 'property') : 
-                        ( isArray(data) ? (data.children.length > 1 ? 'items' : 'item') : '')
+        function getObjectTemplate(data) {
+            let label = isObject(data) ? (data.children.length > 1 ? 'properties' : 'property') :
+                (isArray(data) ? (data.children.length > 1 ? 'items' : 'item') : '')
 
 
-            return h('div',{
+            return h('div', {
                 class: 'tree-view-item-node',
-                ':click':this.toggleOpen.bind(this)
-            },[
-                h('span',{
-                    class:'tree-view-item-key tree-view-item-key-with-chevron ' + (this.open ? 'opened' : '')
-                },[getKey(data)]),
-                    h('span', {
-                        class: "tree-view-item-hint"
-                    }, [ data.children.length + ' '+ label] )
-                
+                on: {
+                    click: this.toggleOpen.bind(this)
+                }
+            }, [
+                h('span', {
+                    class: 'tree-view-item-key tree-view-item-key-with-chevron ' + (this.open ? 'opened' : '')
+                }, [getKey(data)]),
+
+                 h('span', {
+                    class: "tree-view-item-hint"
+                }, [data.children.length + ' ' + label])
+
             ])
         }
 
-        if(isObject(data) || isArray(data)){
+        if (isObject(data) || isArray(data)) {
 
-            return h('div',{
+            let children = this.open ? data.children.map(child => h('tree-view-item', {
+                    data: serialize(child)
+                })) : []
+
+            return h('div', {
                 class: 'tree-view-item-leaf'
-            },[
-                getObjectTemplate.call(this,data),
-                ...data.children.map( child => h('tree-view-item', {data: serialize(child) }) )
+            }, [
+                getObjectTemplate.call(this, data),
+                ...children
             ])
         }
 
-        return isValue(data) ? h('tree-view-item-value',{
-            class : 'tree-view-item-leaf',
-            data : serialize(data)
+        return isValue(data) ? h('tree-view-item-value', {
+            class: 'tree-view-item-leaf',
+            data: serialize(data)
         }) : '[ TreeViewBug ] :unknown_data_type'
 
     }

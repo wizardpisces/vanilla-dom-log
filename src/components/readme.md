@@ -1,1 +1,17 @@
-simple version of [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view) in web component
+mainly reference [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view)
+simple version
+
+## usage
+
+```
+h('tree-view', {
+    data: serialize({
+        test: 'test from mount shadow root!',
+        fn: function(){return 0},
+        info:{
+            name : 'lz',
+            list :[ 1,2,3]
+        }
+    })
+})
+```

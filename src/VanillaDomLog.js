@@ -14,8 +14,10 @@ import {
 } from './createNode'
 
 import {
-    logRootWrapper
-} from './mountShadowRoot'
+    renderJsonTree
+} from './components'
+
+import logRootWrapper from './mountShadowRoot'
 
 const CONSOLE_RESOURCE_MAP = {
     "error": {
@@ -111,17 +113,7 @@ function createProxyMap(proxyFn) {
 export function formatLog(...logs) {
 
     logs = logs.map(log => {
-
-        if (typeof log === 'object') {
-
-            let el = h('span', {})
-
-            // new DomJsonTree(log, el).render()
-
-            return el;
-        }
-
-        return log;
+            return renderJsonTree(log)
     })
 
     return h('div', {}, logs)
