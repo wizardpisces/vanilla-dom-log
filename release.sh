@@ -16,6 +16,7 @@ then
   npm version $VERSION --message "[release] $VERSION"
 
   # publish
-  git push origin master
+  git push origin refs/tags/v$VERSION
+  git push
   npm publish
 fi
