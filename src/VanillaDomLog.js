@@ -1,9 +1,6 @@
 /* 
  *  dom console mainly for development mobile and PC debug
  */
-
-import DomJsonTree from 'dom-json-tree';
-
 import {
     serialize,
     deserialize,
@@ -71,7 +68,7 @@ export default class VanillaDomConsole {
             fragment.appendChild(
                 h('li', {
                     color: CONSOLE_RESOURCE_MAP[logParam.method].color
-                }, [formatLog(logParam.logs)])
+                }, formatLog(...logParam.logs))
             );
         });
         // debugger
@@ -82,7 +79,7 @@ export default class VanillaDomConsole {
         this.logRoot.appendChild(
             h('li', {
                 color: CONSOLE_RESOURCE_MAP[logParam.method].color
-            }, [formatLog(logParam.logs)])
+            }, formatLog(...logParam.logs))
         )
     }
 
@@ -111,10 +108,7 @@ function createProxyMap(proxyFn) {
 }
 
 export function formatLog(...logs) {
-
-    logs = logs.map(log => {
+    return logs.map(log => {
             return renderJsonTree(log)
     })
-
-    return h('div', {}, logs)
 }

@@ -139,9 +139,8 @@ export default class TreeViewItem extends HTMLElement {
     getProperTreeViewItem(data) {
 
         function getObjectTemplate(data) {
-            let label = isObject(data) ? (data.children.length > 1 ? 'properties' : 'property') :
-                (isArray(data) ? (data.children.length > 1 ? 'items' : 'item') : '')
-
+            let label = isObject(data) ? (data.children.length > 1 ? ' Object{...}' : 'Object') :
+                (isArray(data) ? (data.children.length > 1 ? ` Array[...]` : 'Array') : '');
 
             return h('div', {
                 class: 'tree-view-item-node',
@@ -151,7 +150,7 @@ export default class TreeViewItem extends HTMLElement {
             }, [
                 h('span', {
                     class: 'tree-view-item-key tree-view-item-key-with-chevron ' + (this.open ? 'opened' : '')
-                }, [getKey(data)]),
+                }, [data.isRoot ? '' : getKey(data)]),
 
                  h('span', {
                     class: "tree-view-item-hint"

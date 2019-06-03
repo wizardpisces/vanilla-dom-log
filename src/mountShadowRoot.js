@@ -2,7 +2,6 @@ import {h} from './createNode';
 import cssText from './style.css.js'
 import './components'
 import {
-    serialize,
     _VallinaDomLogKey
 } from './utils.js'
 

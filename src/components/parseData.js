@@ -1,9 +1,10 @@
 import _ from './_.js'
 
-function transformValue(valueToTransform, keyForValue) {
+function transformValue(valueToTransform, keyForValue, isRootObject = false) {
     return {
         key: keyForValue,
         type: "value",
+        isRoot: isRootObject,
         value: valueToTransform
     }
 }
@@ -63,7 +64,7 @@ function parsedData(data) {
     // Strings or Integers should not be attempted to be split, so we generate
     // a new object with the string/number as the value
     if (isValue(data)) {
-        return transformValue(data, 'root');
+        return transformValue(data, 'root', true);
     }
 
     // If it's an object or an array, transform as an object

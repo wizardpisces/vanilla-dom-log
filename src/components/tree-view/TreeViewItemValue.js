@@ -62,7 +62,7 @@ export default class TreeViewItem extends HTMLElement {
             h('span', {
                 class: 'tree-view-item-key'
             }, [
-                getKey(data)
+                data.isRoot ? '' : getKey(data)
             ]),
             h('span', {
                 class: 'value'
