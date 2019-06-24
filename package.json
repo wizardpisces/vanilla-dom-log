@@ -1,6 +1,6 @@
 {
   "name": "vanilla-dom-log",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "simple  dom log for development debug, especially mobile device",
   "main": "src/index.js",
   "scripts": {
