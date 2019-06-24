@@ -1,6 +1,10 @@
 # vanilla-dom-log
-simple  dom log for development debug, especially mobile device
-support console.log and console.error proxy
+vanilla dom log for development console debug
+especially mobile device
+
+* Support console.log and console.error proxy
+* Support circular reference object log
+* Isolated from project (Web component shadow root based)
 
 ## How to Use
 
@@ -17,6 +21,10 @@ domLog.delegate();
 
 console.log(1); // 1 would print in both chrome console and dom view console
 
+/**
+ * support different type structure 
+ */
+
 console.log({
     string:'lz',
     list:[1, 2, [2, 3]],
@@ -27,6 +35,17 @@ console.log({
     regx : /^\s/g,
     date : new Date()
 })
+
+
+/**
+ * circular reference
+*/
+
+var a = {b:1,c:2}; var circular = {a:a}
+a.b = a;
+circular.d = circular;
+console.log(circular);//Object { a: Object { b: "[circular structure]", c: 2 }, d: "[circular structure]" }
+
 
 domLog.undelegate();
 
@@ -39,6 +58,7 @@ default: cache recent 10 log in localStorage
 
 ## Todos
 
-* Optimize web component json tree view ( optimize UI and extract web component json tree view as separate package )
-* Support recursive object log 
+* add test cases
 * ts support
+* Optimize web component json tree view UI
+* extract json tree view as separate package
