@@ -4,7 +4,8 @@
 import {
     serialize,
     deserialize,
-    _VallinaDomLogKey
+    _VallinaDomLogKey,
+    _
 } from './utils';
 import {
     h
@@ -95,7 +96,7 @@ function createProxyMap(proxyFn) {
         console[method] = (...args) => {
             proxyFn({
                 method,
-                logs:args
+                logs: args.map(arg => _.deepCopyWithCircularReferenceReplaced(arg, true)) //fix circular reference Maximum call stack size exceeded
             })
             ORIGINAL_CONSOLE_METHOD_MAP[method].apply(null, args)
         }

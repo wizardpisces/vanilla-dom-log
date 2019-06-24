@@ -58,6 +58,8 @@ function isValue(value) {
 }
 
 function parsedData(data) {
+
+    data = _.deepCopyCircularReferenceReplace(data, [], true) //fix circular reference Maximum call stack size exceeded
     // Take the JSON data and transform
     // it into the Tree View DSL
 

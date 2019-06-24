@@ -1,5 +1,5 @@
 mainly reference [vue-json-tree-view](https://github.com/michaelfitzhavey/vue-json-tree-view)
-simple version
+but in web component version
 
 ## usage
 
