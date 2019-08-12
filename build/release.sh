@@ -9,6 +9,9 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "Releasing $VERSION ..."
+  
+  # build
+  VERSION=$VERSION npm run build
 
   # commit
   git add -A

@@ -2,9 +2,13 @@
   "name": "vanilla-dom-log",
   "version": "3.2.1",
   "description": "simple  dom log for development debug, especially mobile device",
-  "main": "src/index.js",
+  "main": "dist/vanilla-dom-log.common.js",
+  "module": "dist/vanilla-dom-log.esm.js",
+  "unpkg": "dist/vanilla-dom-log.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build/build.js",
+    "release": "bash build/release.sh"
   },
   "keywords": [
     "dom",
@@ -22,6 +26,14 @@
   "author": "1275839779@qq.com",
   "license": "ISC",
   "dependencies": {
-    "serialize-javascript": "^1.6.1"
+    "serialize-javascript": "^1.7.0"
+  },
+  "devDependencies": {
+    "rollup": "^1.19.4",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "terser": "^4.1.3"
   }
 }

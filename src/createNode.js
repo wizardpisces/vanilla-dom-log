@@ -1,5 +1,3 @@
-import { isArray } from "util";
-
 // const createVNode = function (name, props, children) {
 //     return {
 //         name: name,
@@ -45,7 +43,7 @@ export const dom = new Proxy({}, {
 
             const el = document.createElement(property);
 
-            for (let prop of Object.keys(attrs)) {
+            for (let prop in attrs) {
 
                 if(prop === 'style'){
 
@@ -65,8 +63,9 @@ export const dom = new Proxy({}, {
                     
                 }
             }
-            for (let child of children) {
+            for (let childKey in children) {
 
+                let child = children[childKey]
                 if ( !isElement(child) ) {
                     child = document.createTextNode(child);
                 }
@@ -81,6 +80,8 @@ export const dom = new Proxy({}, {
 });
 
 export function h(name, props = {}, children) {
-    children = isArray(children) ? children : []
+    children = Array.isArray(children) ? children : []
     return dom[name](props, children)
 }
+
+export default h;

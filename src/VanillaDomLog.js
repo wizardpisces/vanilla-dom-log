@@ -13,7 +13,7 @@ import {
 
 import {
     renderJsonTree
-} from './components'
+} from './components/index'
 
 import logRootWrapper from './mountShadowRoot'
 
