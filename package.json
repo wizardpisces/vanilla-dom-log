@@ -1,6 +1,6 @@
 {
   "name": "vanilla-dom-log",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "description": "simple  dom log for development debug, especially mobile device",
   "main": "dist/vanilla-dom-log.common.js",
   "module": "dist/vanilla-dom-log.esm.js",
