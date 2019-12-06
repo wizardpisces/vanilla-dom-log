@@ -26,7 +26,7 @@
   "author": "1275839779@qq.com",
   "license": "ISC",
   "dependencies": {
-    "serialize-javascript": "^1.7.0"
+    "serialize-javascript": "^2.1.1"
   },
   "devDependencies": {
     "rollup": "^1.19.4",
