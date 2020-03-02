@@ -62,4 +62,3 @@ default: cache recent 10 log in localStorage
 * object with open lazy calculate（despite fixed circular reference,console.log(thisvue.$router ) still stuck browser with 100% cpu usage）
 * ts support
 * Optimize web component json tree view UI
-* extract json tree view as separate package
